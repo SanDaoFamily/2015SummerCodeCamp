@@ -66,7 +66,7 @@ while order == str() :
 				del maillist[i]
 				print removeID
 				break
-			if i == len(maillist)-1 and removeID != maillist[i].ID[:-1] :
+			elif i == len(maillist)-1 and removeID != maillist[i].ID[:-1] :
 				print "-"
 
 
@@ -77,6 +77,8 @@ while order == str() :
 
 			if  maillist[i].fromname[:-1] == findfromname:
 				print maillist[i].ID[:-1]
+			elif i == len(maillist)-1 and findfromname != maillist[i].fromname[:-1] :
+				print "-"
 
 	elif order[0:8] == "query -t" :
 		findto = order.split('"')
@@ -84,6 +86,8 @@ while order == str() :
 		for i in range (0,len(maillist),+1) :
 			if findtoname == maillist[i].toname[:-1] :
 				print maillist[i].ID[:-1]
+			elif i == len(maillist)-1 and findtoname != maillist[i].toname[:-1] :
+				print "-"
 
 
 	else :
