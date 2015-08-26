@@ -152,53 +152,56 @@ while order == str() :
 
 	elif order[0:8] == "query -d" :
 		dateseries = order[8:].split("~")
+		if len(dateseries) == 2 :
 
-		if len(dateseries[0]) == 0 :
-			for i in range (0 ,len(maillist), +1) :
-				if maillist[i].date <= dateseries[1] :
-					sortlist.append(maillist[i].date)
+			if len(dateseries[0]) == 0 :
+				for i in range (0 ,len(maillist), +1) :
+					if maillist[i].date <= dateseries[1] :
+						sortlist.append(maillist[i].date)
+					datesorted = bubbleSort(sortlist)
+				for j in range (0 , len(datesorted), +1) :
+					for k in range (0 ,len(maillist), +1) :
+						if datesorted[j] == maillist[k].date :
+							datesorted[j] = maillist[k].ID
+
+				for l in datesorted :
+					print l,
+				
+
+			elif len(dateseries[1]) == 0 :
+				for i in range (0 ,len(maillist), +1) :
+					if maillist[i].date >= dateseries[0] :
+						sortlist.append(maillist[i].date)
 				datesorted = bubbleSort(sortlist)
-			for j in range (0 , len(datesorted), +1) :
-				for k in range (0 ,len(maillist), +1) :
-					if datesorted[j] == maillist[k].date :
-						datesorted[j] = maillist[k].ID
+				for j in range (0 , len(datesorted), +1) :
+					for k in range (0 , len(maillist), +1) :
+						if datesorted[j] == maillist[k].date :
+							datesorted[j] = maillist[k].ID
+				for l in datesorted :
+					print l,
 
-			for l in datesorted :
-				print l,
-			
-
-		elif len(dateseries[1]) == 0 :
-			for i in range (0 ,len(maillist), +1) :
-				if maillist[i].date >= dateseries[0] :
-					sortlist.append(maillist[i].date)
-			datesorted = bubbleSort(sortlist)
-			for j in range (0 , len(datesorted), +1) :
-				for k in range (0 , len(maillist), +1) :
-					if datesorted[j] == maillist[k].date :
-						datesorted[j] = maillist[k].ID
-			for l in datesorted :
-				print l,
-
-			
+				
 
 
-		elif len(dateseries[0]) and len(dateseries[1]) != 0 :
-			for i in range (0 ,len(maillist),+1) :
-				if maillist[i].date >= dateseries[0] and maillist[i].date <= dateseries[1] :
-					sortlist.append(maillist[i].date)
+			elif len(dateseries[0]) and len(dateseries[1]) != 0 :
+				for i in range (0 ,len(maillist),+1) :
+					if maillist[i].date >= dateseries[0] and maillist[i].date <= dateseries[1] :
+						sortlist.append(maillist[i].date)
 
-			datesorted = bubbleSort(sortlist)
+				datesorted = bubbleSort(sortlist)
 
-			for k in range (0 ,len(datesorted), +1) :
-				for l in range (0 ,len(maillist), +1) :
-					if datesorted[k] == maillist[l].date :
-						datesorted[k] = maillist[l].ID
+				for k in range (0 ,len(datesorted), +1) :
+					for l in range (0 ,len(maillist), +1) :
+						if datesorted[k] == maillist[l].date :
+							datesorted[k] = maillist[l].ID
 
-			for m in datesorted  :
-				print m ,
-		
-		datesorted = []
-		sortlist = []
+				for m in datesorted  :
+					print m ,
+
+			datesorted = []
+			sortlist = []
+		else :
+				print "how can you be so pity ?"
 
 	else :
 		print "fuck"
